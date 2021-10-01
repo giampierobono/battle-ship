@@ -1,5 +1,6 @@
-import { IBoat } from './IBoat';
+import { MappedBoatsModel } from './mapped-boats.model';
 
-export interface IPlayer {
-  boats: IBoat[];
+export interface PlayerModel {
+  playerIndex: number;
+  boats: MappedBoatsModel;
 }

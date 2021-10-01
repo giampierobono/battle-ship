@@ -1,1 +1,1 @@
-export * from './BoatType';
+export * from './boat-type.enum';
