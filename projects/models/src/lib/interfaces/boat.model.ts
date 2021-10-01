@@ -6,5 +6,5 @@ export interface BoatModel {
   shape: BoatShapeModel;
   isSunk: boolean;
   hits: number;
-  positions: BoatPositionModel[];
+  positions: BoatPositionModel;
 }

@@ -5,7 +5,8 @@
     "@angular/common": "^12.2.0",
     "@angular/core": "^12.2.0",
     "@ngrx/store": "^12.4.0",
-    "@smart/models": "^0.0.1"
+    "@smart/models": "^0.0.1",
+    "@smart/store-tool": "^0.0.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
