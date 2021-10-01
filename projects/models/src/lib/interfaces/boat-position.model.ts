@@ -1,3 +1,3 @@
-export interface IBoatPosition {
-  [rowLetter: string]: { columnNumber: number; hit: boolean };
+export interface BoatPositionModel {
+  [rowLetter: string]: { [columnNumber: number]: boolean };
 }

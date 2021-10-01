@@ -1,8 +1,10 @@
-import { BoatType } from '../enums';
-import { IBoatPosition } from './IBoatPosition';
+import { BoatPositionModel } from './boat-position.model';
+import { BoatShapeModel } from './boat-shape.model';
 
-export interface IBoat {
-  shape: BoatType;
+export interface BoatModel {
+  boatIndex: number;
+  shape: BoatShapeModel;
   isSunk: boolean;
-  positions: IBoatPosition[];
+  hits: number;
+  positions: BoatPositionModel[];
 }
