@@ -10,6 +10,10 @@
       "store": [
         "dist/store/store",
         "dist/store"
+      ],
+      "store-tools": [
+        "dist/store-tools/store-tools",
+        "dist/store-tools"
       ]
     },
     "baseUrl": "./",
