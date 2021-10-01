@@ -1,5 +1,5 @@
-import { IPlayer } from 'models';
+import { PlayerModel } from 'models';
 
 export interface CreatePlayerPayloadModel {
-  newPlayer: IPlayer;
+  newPlayer: PlayerModel;
 }

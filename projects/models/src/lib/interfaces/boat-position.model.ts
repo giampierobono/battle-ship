@@ -1,3 +1,3 @@
 export interface BoatPositionModel {
-  [rowLetter: string]: { [columnNumber: number]: boolean };
+  [rowLetter: number]: { [columnNumber: number]: boolean };
 }

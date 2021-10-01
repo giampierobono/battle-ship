@@ -1,56 +1,28 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer } from '@ngrx/store';
 import * as PlayersActions from '../actions/players.actions';
-import { BoatPositionModel, MappedPlayersModel } from 'models';
+import { MappedPlayersModel } from 'models';
+import { produceOn } from 'store-tools';
 
 export interface IPlayersState {
   players: MappedPlayersModel;
 }
+
 export const playersInitialState: IPlayersState = {
   players: {},
 };
 
 export const playersReducer = createReducer(
   playersInitialState,
-  on(PlayersActions.createPlayer, (state, { newPlayer }) => ({
-    ...state,
-    players: { ...state.players, [newPlayer.playerIndex]: { ...newPlayer } },
-  })),
-  on(PlayersActions.addBoatToPlayer, (state, { boat, playerIndex }) => ({
-    ...state,
-    players: {
-      ...state.players,
-      [playerIndex]: {
-        ...state.players[playerIndex],
-        boats: {
-          ...state.players[playerIndex].boats,
-          [boat.boatIndex]: {
-            ...boat,
-          },
-        },
-      },
-    },
-  })),
-  on(PlayersActions.hitPlayerBoat, (state, { hitBoatIndex, hitPlayerIndex, position }) => ({
-    ...state,
-    players: {
-      ...state.players,
-      [hitPlayerIndex]: {
-        ...state.players[hitPlayerIndex],
-        boats: {
-          ...state.players[hitPlayerIndex].boats,
-          [hitBoatIndex]: {
-            ...state.players[hitPlayerIndex].boats[hitBoatIndex],
-            positions: state.players[hitPlayerIndex].boats[hitBoatIndex].positions.map(
-              (boatPosition: BoatPositionModel) => {
-                const clonedBoatPosition = { ...boatPosition };
-                if (clonedBoatPosition[position.row] && clonedBoatPosition[position.row][position.column]) {
-                  clonedBoatPosition[position.row][position.column] = true;
-                }
-              }
-            ),
-          },
-        },
-      },
-    },
-  }))
+  produceOn(PlayersActions.createPlayer, (state, { newPlayer }) => {
+    state.players[newPlayer.playerIndex] = newPlayer;
+  }),
+  produceOn(PlayersActions.addBoatToPlayer, (state, { boat, playerIndex }) => {
+    state.players[playerIndex].boats[boat.boatIndex] = boat;
+  }),
+  produceOn(PlayersActions.hitPlayerBoat, (state, { hitBoatIndex, hitPlayerIndex, position }) => {
+    const boat = state.players[hitPlayerIndex].boats[hitBoatIndex];
+    boat.positions[position.row][position.column] = true;
+    boat.hits++;
+    boat.isSunk = boat.hits === boat.shape.shapeSize;
+  })
 );
