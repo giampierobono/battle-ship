@@ -1,10 +1,9 @@
 import { BoatPositionModel } from './boat-position.model';
-import { BoatShapeModel } from './boat-shape.model';
 
 export interface BoatModel {
+  playerIndex: number;
   boatIndex: number;
-  shape: BoatShapeModel;
-  isSunk: boolean;
+  shapeIndex: number;
   hits: number;
   positions: BoatPositionModel;
 }
