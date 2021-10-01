@@ -3,10 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build:models:dev": "ng build models --configuration development",
+    "build:models:prod": "ng build models --configuration production",
+    "build:store-tools:dev": "ng build store-tools --configuration development",
+    "build:store-tools:prod": "ng build store-tools --configuration production",
+    "build:store:dev": "ng build store --configuration development",
+    "build:store:prod": "ng build store --configuration production",
+    "clean:all": "npm run clean:projects && npm run clean:root",
+    "clean:projects": "lerna clean --yes",
+    "clean:root": "rimraf node_module",
     "cz": "git-cz",
+    "preinstall": "npm run clean:all",
     "postinstall": "lerna bootstrap",
     "lint": "ng lint",
-    "sort-package-json": "sort-package-json"
+    "sort-package-json": "sort-package-json && lerna exec sort-package-json"
   },
   "commitlint": {
     "extends": [
@@ -52,6 +62,7 @@
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
     "commitizen": "^4.2.4",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "14.2.1",
@@ -70,6 +81,7 @@
     "lerna": "^4.0.0",
     "ng-packagr": "^12.1.1",
     "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
     "sort-package-json": "^1.52.0",
     "typescript": "~4.3.5"
   },
