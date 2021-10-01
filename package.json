@@ -2,6 +2,7 @@
   "name": "battle-ship",
   "version": "0.0.0",
   "private": true,
+  "workspaces": ["./projects/*"],
   "scripts": {
     "build:models:dev": "ng build models --configuration development",
     "build:models:prod": "ng build models --configuration production",
@@ -13,7 +14,6 @@
     "clean:projects": "lerna clean --yes",
     "clean:root": "rimraf node_module",
     "cz": "git-cz",
-    "preinstall": "npm run clean:all",
     "postinstall": "lerna bootstrap",
     "lint": "ng lint",
     "sort-package-json": "sort-package-json && lerna exec sort-package-json"
@@ -86,6 +86,6 @@
     "typescript": "~4.3.5"
   },
   "engines": {
-    "node": ">14"
+    "node": ">= 14 "
   }
 }
