@@ -9,6 +9,7 @@
     "@angular/core": "^12.2.0",
     "@ngrx/store": "^12.4.0",
     "@smart/models": "^0.0.1",
-    "@smart/store-tool": "^0.0.1"
+    "@smart/store-tool": "0.0.1",
+    "ramda": "^0.27.1"
   }
 }

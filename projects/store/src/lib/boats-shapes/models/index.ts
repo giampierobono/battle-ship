@@ -1,1 +1,1 @@
-export * from './add-boat-shape-payload.model';
+export * from './add-boat-shapes-payload.model';
