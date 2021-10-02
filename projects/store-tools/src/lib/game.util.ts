@@ -60,7 +60,6 @@ export const generateBoatLocation = (boardSize: number, boats: BoatModel[], shap
     do {
       boat.positions = generateBoatShape(shapes[boat.shapeKey], boardSize);
     } while (checkCollisions(boats, boat.positions, boat.boatIndex));
-    console.log('final position', boat.positions);
   });
   return clonedBoats;
 };
