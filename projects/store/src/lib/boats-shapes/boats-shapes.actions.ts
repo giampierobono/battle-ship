@@ -1,4 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { AddBoatShapePayloadModel } from './models';
+import { AddBoatShapesPayloadModel } from './models';
 
-export const addBoatShape = createAction('[Boats] Add boat shape', props<AddBoatShapePayloadModel>());
+export const addBoatShapes = createAction('[Boats] Add boat shape', props<AddBoatShapesPayloadModel>());
