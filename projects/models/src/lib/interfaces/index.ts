@@ -4,4 +4,5 @@ export * from './boat-shape.model';
 export * from './game.model';
 export * from './mapped-boat-shapes.model';
 export * from './mapped-players.model';
+export * from './segment.model';
 export * from './player.model';
