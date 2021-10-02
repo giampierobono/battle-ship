@@ -16,6 +16,7 @@
     "clean:projects": "lerna clean --yes",
     "clean:root": "rimraf node_module",
     "cz": "git-cz",
+    "preinstall": "node ./scripts/check-yarn.js",
     "postinstall": "lerna bootstrap",
     "lint": "ng lint",
     "sort-package-json": "sort-package-json && lerna exec sort-package-json"
