@@ -6,3 +6,4 @@ export * from './mapped-boat-shapes.model';
 export * from './mapped-players.model';
 export * from './segment.model';
 export * from './player.model';
+export * from './shot-position.model';
