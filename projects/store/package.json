@@ -1,5 +1,5 @@
 {
-  "name": "@smart/store",
+  "name": "store",
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0"
@@ -7,9 +7,11 @@
   "peerDependencies": {
     "@angular/common": "^12.2.0",
     "@angular/core": "^12.2.0",
+    "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@smart/models": "^0.0.1",
-    "@smart/store-tool": "0.0.1",
-    "ramda": "^0.27.1"
+    "@smart/store-tools": "0.0.1",
+    "ramda": "^0.27.1",
+    "rxjs": "^7.3.1"
   }
 }

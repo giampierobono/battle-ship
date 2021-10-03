@@ -1,4 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { CreatePlayerPayloadModel } from './models';
+import { AddPlayersPayloadModel } from './models';
 
-export const createPlayer = createAction('[Players] Add new player', props<CreatePlayerPayloadModel>());
+export const addPlayers = createAction('[Players] Add new players', props<AddPlayersPayloadModel>());
