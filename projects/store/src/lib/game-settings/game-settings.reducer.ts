@@ -18,7 +18,7 @@ export const gameSettingsReducer = createReducer(
   gameSettingsInitialState,
   produceOn(GameSettingsActions.setGameSettings, (state, { boatsPerPlayer, numOfPlayers, boardSize }) => {
     state.boardSize = boardSize;
-    state.boatsPerPlayer = boatsPerPlayer;
     state.numOfPlayers = numOfPlayers;
+    state.boatsPerPlayer = boatsPerPlayer;
   })
 );

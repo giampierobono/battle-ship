@@ -1,5 +1,5 @@
 import { BoatModel } from 'models';
 
 export interface AddBoatsToPlayerPayload {
-  boats: BoatModel[];
+  boats: Array<Array<BoatModel>>;
 }

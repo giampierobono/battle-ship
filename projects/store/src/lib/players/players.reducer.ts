@@ -1,19 +1,19 @@
 import { createReducer } from '@ngrx/store';
 import * as PlayersActions from './players.actions';
-import { MappedPlayersModel } from 'models';
+import { PlayerModel } from 'models';
 import { produceOn } from 'store-tools';
 
 export interface IPlayersState {
-  players: MappedPlayersModel;
+  players: PlayerModel[];
 }
 
 export const playersInitialState: IPlayersState = {
-  players: {},
+  players: [],
 };
 
 export const playersReducer = createReducer(
   playersInitialState,
-  produceOn(PlayersActions.createPlayer, (state, { newPlayer }) => {
-    state.players[newPlayer.playerIndex] = newPlayer;
+  produceOn(PlayersActions.addPlayers, (state, { players }) => {
+    state.players = { ...players };
   })
 );
