@@ -1,7 +1,13 @@
-import { BoatModel } from 'models';
-import { BoatPositionModel, BoatShapeModel, MappedBoatShapesModel } from 'models';
+import {
+  BoatModel,
+  BoatPositionModel,
+  BoatShapeModel,
+  BoatTypeEnum,
+  MappedBoatShapesModel,
+  PlayerModel,
+  SegmentModel,
+} from 'models';
 import { assocPath, has, isEmpty, keys } from 'ramda';
-import { SegmentModel } from 'models';
 
 const generateBoatShape = (shape: BoatShapeModel, boardSize: number): BoatPositionModel => {
   let boatPositions: BoatPositionModel = {};
@@ -46,20 +52,67 @@ const arePositionsColliding = (boatPositions: BoatPositionModel, toCompare: Boat
       keys(boatPositions[row]).some((column) => has(column.toString())(toCompare[row]))
   );
 
-const checkCollisions = (boats: BoatModel[], positionsToCheck: BoatPositionModel, currentBoatIndex: number): boolean =>
+const checkCollisions = (boats: BoatModel[], currentBoat: BoatModel): boolean =>
   boats.some((boat) =>
-    boat.boatIndex !== currentBoatIndex && !isEmpty(boat.positions)
-      ? arePositionsColliding(boat.positions, positionsToCheck)
+    boat.boatIndex !== currentBoat.boatIndex && boat.playerIndex === currentBoat.playerIndex && !isEmpty(boat.positions)
+      ? arePositionsColliding(boat.positions, currentBoat.positions)
       : false
   );
 
-export const generateBoatLocation = (boardSize: number, boats: BoatModel[], shapes: MappedBoatShapesModel) => {
-  const clonedBoats = [...boats];
+const randomEnum = <T>(anEnum: T): T[keyof T] => {
+  const enumValues = Object.keys(anEnum)
+    .map((n) => Number.parseInt(n))
+    .filter((n) => !Number.isNaN(n)) as unknown as T[keyof T][];
+  const randomIndex = Math.floor(Math.random() * enumValues.length);
+  return enumValues[randomIndex];
+};
 
-  clonedBoats.forEach((boat) => {
-    do {
-      boat.positions = generateBoatShape(shapes[boat.shapeKey], boardSize);
-    } while (checkCollisions(boats, boat.positions, boat.boatIndex));
+const createDefaultPlayer = (playerIndex: number): PlayerModel => ({ playerIndex });
+
+export const generateBoatLocation = (
+  boardSize: number,
+  playersBoats: Array<Array<BoatModel>>,
+  shapes: MappedBoatShapesModel
+) => {
+  const clonedBoats = [...playersBoats];
+
+  clonedBoats.forEach((playerBoats, playerIndex: number) => {
+    playerBoats.forEach((playerBoat) => {
+      do {
+        playerBoat.positions = generateBoatShape(shapes[playerBoat.shapeKey], boardSize);
+      } while (checkCollisions(clonedBoats[playerIndex], playerBoat));
+    });
   });
   return clonedBoats;
 };
+
+const createDefaultBoat = (playerIndex: number, boatIndex: number): BoatModel => ({
+  positions: {},
+  playerIndex,
+  boatIndex,
+  shapeKey: randomEnum(BoatTypeEnum),
+  hits: 0,
+});
+
+const createAllDefaultBoats = (players: PlayerModel[], maxBoatPerPlayer: number) =>
+  players.reduce((acc, { playerIndex }) => {
+    for (let i = 0; i < maxBoatPerPlayer; i++) {
+      acc[playerIndex] = [...(acc[playerIndex] ? acc[playerIndex] : []), ...[createDefaultBoat(playerIndex, i)]];
+    }
+    return acc;
+  }, [] as Array<Array<BoatModel>>);
+
+export const createPlayers = (numberOfPlayers: number): PlayerModel[] => {
+  const players: PlayerModel[] = [];
+  for (let i = 0; i < numberOfPlayers; i++) {
+    players.push(createDefaultPlayer(i));
+  }
+  return players;
+};
+
+export const createBoatsForAllPlayers = (
+  players: PlayerModel[],
+  maxBoatPerPlayer: number,
+  boardSize: number,
+  shapes: MappedBoatShapesModel
+): Array<Array<BoatModel>> => generateBoatLocation(boardSize, createAllDefaultBoats(players, maxBoatPerPlayer), shapes);
