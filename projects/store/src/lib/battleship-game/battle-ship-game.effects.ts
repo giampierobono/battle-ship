@@ -2,14 +2,22 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { CoreState } from '../common';
-import { addSunkBoat, nextTurn, savePlayerMove, setPlayerTurn, tryShoot } from './battle-ship-game.actions';
+import {
+  addSunkBoat,
+  nextTurn,
+  savePlayerMove,
+  setPlayerTurn,
+  setWinnerPlayer,
+  tryShoot,
+} from './battle-ship-game.actions';
 import { filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { getAllBoats, hitPlayerBoat } from '../boats';
 import { getHitBoat } from 'store-tools';
 import { PositionStateEnum } from 'models';
-import { getNumberOrPlayers } from '../players';
-import { getPlayerTurn } from './battle-ship-game.selectors';
+import { getCurrentGameNumberOfPlayers } from '../players';
+import { getCurrentPlayerSunkBoats, getPlayerTurn } from './battle-ship-game.selectors';
 import { getBoatShapes } from '../boats-shapes';
+import { getGameSettings } from '../game-settings';
 
 @Injectable()
 export class BattleShipGameEffects {
@@ -73,11 +81,26 @@ export class BattleShipGameEffects {
     )
   );
 
+  public checkIsGameOver$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addSunkBoat),
+      withLatestFrom(this.store.pipe(select(getPlayerTurn))),
+      withLatestFrom(this.store.pipe(select(getCurrentGameNumberOfPlayers))),
+      withLatestFrom(this.store.pipe(select(getGameSettings))),
+      withLatestFrom(this.store.pipe(select(getCurrentPlayerSunkBoats))),
+      filter(
+        ([[[[], numOfPlayers], gameSettings], currentPlayerSunkBoats]) =>
+          currentPlayerSunkBoats.length === gameSettings.boatsPerPlayer * (numOfPlayers - 1)
+      ),
+      map(([[[[, currentPlayerIndex]]]]) => setWinnerPlayer({ winnerPlayerIndex: currentPlayerIndex }))
+    )
+  );
+
   public selectNextPlayer$ = createEffect(() =>
     this.actions$.pipe(
       ofType(nextTurn),
       withLatestFrom(this.store.pipe(select(getPlayerTurn))),
-      withLatestFrom(this.store.pipe(select(getNumberOrPlayers))),
+      withLatestFrom(this.store.pipe(select(getCurrentGameNumberOfPlayers))),
       map(([[, currentPlayer], numOfPlayers]) =>
         setPlayerTurn({ playerIndex: currentPlayer + 1 < numOfPlayers ? currentPlayer + 1 : 0 })
       )

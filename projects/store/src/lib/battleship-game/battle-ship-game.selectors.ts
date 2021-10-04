@@ -10,6 +10,8 @@ export const getPlayerTurn = createSelector(getBattleShipGameState, ({ playerTur
 
 export const getPlayersSunkBoats = createSelector(getBattleShipGameState, ({ playersSunkBoats }) => playersSunkBoats);
 
+export const getIsGameOver = createSelector(getBattleShipGameState, ({ isGameOver }) => isGameOver);
+
 export const getCurrentPlayerSunkBoats = createSelector(
   getPlayerTurn,
   getPlayersSunkBoats,
@@ -35,6 +37,22 @@ export const getPlayerMoves = createSelector(
   ({ playersMoves }, currentPlayerIndex) => playersMoves[currentPlayerIndex] || []
 );
 
+export const getTotalFiredShots = createSelector(getBattleShipGameState, getPlayers, ({ playersMoves }, players) =>
+  players.reduce((acc, currentPlayer) => {
+    if (playersMoves[currentPlayer.playerIndex]) {
+      acc += Object.keys(playersMoves[currentPlayer.playerIndex]).reduce((moves, currentMove) => {
+        moves += Object.keys(playersMoves[currentPlayer.playerIndex][currentMove as any]).length;
+        return moves;
+      }, 0);
+    }
+    return acc;
+  }, 0)
+);
+
+export const getSunkBoatPerPlayer = createSelector(getPlayersSunkBoats, getPlayers, (sunkBoats, players) =>
+  players.map((player) => (sunkBoats[player.playerIndex] ? Object.keys(sunkBoats[player.playerIndex]).length : 0))
+);
+
 export const getBoatForCurrentPlayer = createSelector(
   getPlayerTurn,
   getAllBoats,
@@ -45,7 +63,7 @@ export const getBoatForCurrentPlayer = createSelector(
 export const getAllBoatsPositionsForCurrentPlayer = createSelector(
   getBoatForCurrentPlayer,
   (playerBoats: BoatModel[]) =>
-    playerBoats.reduce((acc, currentBoat) => {
+    playerBoats?.reduce((acc, currentBoat) => {
       Object.keys(currentBoat.positions).forEach(
         (key) => (acc = { ...acc, [key]: { ...acc[key as any], ...currentBoat.positions[key as any] } })
       );

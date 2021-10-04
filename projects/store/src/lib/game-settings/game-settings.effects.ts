@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { setGameSettings } from './game-settings.actions';
-import { map, withLatestFrom } from 'rxjs/operators';
-import { addPlayers, AddPlayersPayloadModel } from '../players';
+import { filter, map, withLatestFrom } from 'rxjs/operators';
+import { addPlayers, AddPlayersPayloadModel, getCurrentGameNumberOfPlayers } from '../players';
 import { createBoatsForAllPlayers, createPlayers } from 'store-tools';
-import { addBoatsToPlayer } from '../boats';
+import { addBoatsToPlayer, getTotalNumberOfBoats } from '../boats';
 import { select, Store } from '@ngrx/store';
 import { CoreState } from '../common';
 import { getBoatShapes } from '../boats-shapes';
@@ -17,7 +17,13 @@ export class GameEffects {
   public createPlayers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setGameSettings),
-      map(({ numOfPlayers }) => addPlayers({ players: createPlayers(numOfPlayers) }))
+      withLatestFrom(this.store.pipe(select(getCurrentGameNumberOfPlayers))),
+      withLatestFrom(this.store.pipe(select(getTotalNumberOfBoats))),
+      filter(
+        ([[, currentExistingPlayers], currentExistingBoats]) =>
+          currentExistingPlayers === 0 && currentExistingBoats === 0
+      ),
+      map(([[{ numOfPlayers }]]) => addPlayers({ players: createPlayers(numOfPlayers) }))
     )
   );
 

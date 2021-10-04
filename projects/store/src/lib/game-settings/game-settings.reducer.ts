@@ -9,9 +9,9 @@ export interface IGameSettingsState {
 }
 
 export const gameSettingsInitialState: IGameSettingsState = {
-  boardSize: -1,
-  boatsPerPlayer: -1,
-  numOfPlayers: -1,
+  boardSize: 0,
+  boatsPerPlayer: 0,
+  numOfPlayers: 0,
 };
 
 export const gameSettingsReducer = createReducer(

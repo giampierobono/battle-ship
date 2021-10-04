@@ -6,7 +6,8 @@ import { MappedPlayersSunkBoatsModel, MappedPlayersMovesModel } from 'models';
 export interface IBattleShipGameState {
   playerTurn: number;
   isCurrentTurnOver: boolean;
-  gameIsOver: boolean;
+  isGameOver: boolean;
+  winnerPlayer?: number;
   playersMoves: MappedPlayersMovesModel;
   playersSunkBoats: MappedPlayersSunkBoatsModel;
 }
@@ -14,9 +15,10 @@ export interface IBattleShipGameState {
 export const battleShipGameInitialState: IBattleShipGameState = {
   playerTurn: 0,
   isCurrentTurnOver: false,
-  gameIsOver: false,
+  isGameOver: false,
   playersMoves: {},
   playersSunkBoats: {},
+  winnerPlayer: undefined,
 };
 
 export const battleShipGameReducer = createReducer(
@@ -44,5 +46,9 @@ export const battleShipGameReducer = createReducer(
     }
     // TODO: create more specific model for the store value (no need to save sunkByPlayerIndex)
     state.playersSunkBoats[sunkByPlayerIndex].push({ boatIndex, boatBelongsToPlayerIndex, sunkByPlayerIndex });
+  }),
+  produceOn(BattleShipGameActions.setWinnerPlayer, (state, { winnerPlayerIndex }) => {
+    state.winnerPlayer = winnerPlayerIndex;
+    state.isGameOver = true;
   })
 );

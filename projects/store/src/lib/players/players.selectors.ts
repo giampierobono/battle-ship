@@ -5,4 +5,4 @@ export const getPlayerState = createSelector(getCoreStateFeatureSelector, ({ pla
 
 export const getPlayers = createSelector(getPlayerState, ({ players }) => players);
 
-export const getNumberOrPlayers = createSelector(getPlayers, (players) => players.length);
+export const getCurrentGameNumberOfPlayers = createSelector(getPlayers, (players) => players.length);

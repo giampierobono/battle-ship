@@ -5,23 +5,4 @@ export const getBoatsState = createSelector(getCoreStateFeatureSelector, ({ boat
 
 export const getAllBoats = createSelector(getBoatsState, ({ boats }) => boats);
 
-/*
-const getBoatsForPlayerInternal = (playerIndex: number) =>
-  createSelector(getBoatsState, (boats) => boats.filter((boat) => boat.playerIndex === playerIndex));
-
-export const getBoatsForPlayer = (playerIndex: number) =>
-  defaultMemoize(getBoatsForPlayerInternal).memoized(playerIndex);
-
-const getBoatsPositionsForPlayerInternal = (playerIndex: number) =>
-  createSelector(getBoatsForPlayer(playerIndex), (playerBoats: BoatModel[]) =>
-    playerBoats.reduce((acc, currentBoat) => {
-      Object.keys(currentBoat.positions).forEach(
-        (key: string) => (acc = { ...acc, [key]: { ...acc[key], ...currentBoat.positions[key] } })
-      );
-      return acc;
-    }, {} as BoardPositionsModel)
-  );
-
-export const getBoatsPositionsForPlayer = (playerIndex: number) =>
-  defaultMemoize(getBoatsPositionsForPlayerInternal).memoized(playerIndex);
-*/
+export const getTotalNumberOfBoats = createSelector(getAllBoats, (boats) => boats.length);
