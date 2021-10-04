@@ -1,7 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { getCoreStateFeatureSelector } from '../common/common.selectors';
-import { getPlayerTurn } from '../battleship-game';
-import { BoatModel, BoatPositionModel } from 'models';
 
 export const getBoatsState = createSelector(getCoreStateFeatureSelector, ({ boats }) => boats);
 
@@ -21,26 +19,9 @@ const getBoatsPositionsForPlayerInternal = (playerIndex: number) =>
         (key: string) => (acc = { ...acc, [key]: { ...acc[key], ...currentBoat.positions[key] } })
       );
       return acc;
-    }, {} as BoatPositionModel)
+    }, {} as BoardPositionsModel)
   );
 
 export const getBoatsPositionsForPlayer = (playerIndex: number) =>
   defaultMemoize(getBoatsPositionsForPlayerInternal).memoized(playerIndex);
 */
-
-export const getBoatForCurrentPlayer = createSelector(
-  getPlayerTurn,
-  getAllBoats,
-  (currentPlayer, boats): BoatModel[] => boats[currentPlayer]
-);
-
-export const getAllBoatsPositionsForCurrentPlayer = createSelector(
-  getBoatForCurrentPlayer,
-  (playerBoats: BoatModel[]) =>
-    playerBoats.reduce((acc, currentBoat) => {
-      Object.keys(currentBoat.positions).forEach(
-        (key: string) => (acc = { ...acc, [key]: { ...acc[key], ...currentBoat.positions[key] } })
-      );
-      return acc;
-    }, {} as BoatPositionModel)
-);

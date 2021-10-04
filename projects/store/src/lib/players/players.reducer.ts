@@ -14,6 +14,6 @@ export const playersInitialState: IPlayersState = {
 export const playersReducer = createReducer(
   playersInitialState,
   produceOn(PlayersActions.addPlayers, (state, { players }) => {
-    state.players = { ...players };
+    state.players = players;
   })
 );
