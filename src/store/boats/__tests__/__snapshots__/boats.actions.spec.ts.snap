@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Boats actions addBoatsToPlayer should return correct action structure 1`] = `
+Object {
+  "boats": Array [
+    Array [
+      Object {
+        "boatIndex": 0,
+        "hits": 0,
+        "playerIndex": 0,
+        "positions": Object {},
+        "shapeKey": 2,
+      },
+    ],
+  ],
+  "type": "[Boats] Add boat to player",
+}
+`;
+
+exports[`Boats actions hitPlayerBoat should return correct action structure 1`] = `
+Object {
+  "boatIndex": 0,
+  "position": Object {
+    "column": 0,
+    "playerIndex": 0,
+    "row": 0,
+  },
+  "type": "[Boats] Hit player boat",
+}
+`;

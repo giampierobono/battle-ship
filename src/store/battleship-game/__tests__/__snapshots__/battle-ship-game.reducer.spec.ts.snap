@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`battleShipGameReducer should add sunk boat to player 1 1`] = `
+Array [
+  Object {
+    "boatBelongsToPlayerIndex": 0,
+    "boatIndex": 0,
+    "sunkByPlayerIndex": 1,
+  },
+]
+`;

@@ -23,9 +23,6 @@ export const battleShipGameInitialState: IBattleShipGameState = {
 
 export const battleShipGameReducer = createReducer(
   battleShipGameInitialState,
-  produceOn(BattleShipGameActions.setPlayerTurn, (state, { playerIndex }) => {
-    state.playerTurn = playerIndex;
-  }),
   produceOn(BattleShipGameActions.savePlayerMove, (state, { state: positionState, shotPosition }) => {
     if (!state.playersMoves[shotPosition.playerIndex]) {
       state.playersMoves[shotPosition.playerIndex] = {};

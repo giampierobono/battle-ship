@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Boats reducer should add boat to player 1`] = `
+Array [
+  Array [
+    Object {
+      "boatIndex": 0,
+      "hits": 0,
+      "playerIndex": 0,
+      "positions": Object {},
+      "shapeKey": 0,
+    },
+  ],
+]
+`;

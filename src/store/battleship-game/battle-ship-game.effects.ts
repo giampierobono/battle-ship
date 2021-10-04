@@ -85,7 +85,7 @@ export class BattleShipGameEffects {
     this.actions$.pipe(
       ofType(addSunkBoat),
       withLatestFrom(this.store.pipe(select(getPlayerTurn))),
-      withLatestFrom(this.store.pipe(select(getCurrentGameNumberOfPlayers))),
+      withLatestFrom(this.store.pipe(select(getCurrentGameNumberOfPlayers))), //not needed, use settings
       withLatestFrom(this.store.pipe(select(getGameSettings))),
       withLatestFrom(this.store.pipe(select(getCurrentPlayerSunkBoats))),
       filter(
