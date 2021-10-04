@@ -1,16 +1,17 @@
 import {
+  BoardPositionsModel,
   BoatModel,
-  BoatPositionModel,
   BoatShapeModel,
   BoatTypeEnum,
   MappedBoatShapesModel,
   PlayerModel,
+  PositionStateEnum,
   SegmentModel,
 } from 'models';
-import { assocPath, has, isEmpty, keys } from 'ramda';
+import { assocPath, has, isEmpty, keys, path } from 'ramda';
 
-const generateBoatShape = (shape: BoatShapeModel, boardSize: number): BoatPositionModel => {
-  let boatPositions: BoatPositionModel = {};
+const generateBoatShape = (shape: BoatShapeModel, boardSize: number): BoardPositionsModel => {
+  let boatPositions: BoardPositionsModel = {};
   let startingRow: number | undefined = undefined;
   let startingColumn: number | undefined = undefined;
   let rowsOffsetFromStart: number | undefined = undefined;
@@ -31,7 +32,7 @@ const generateBoatShape = (shape: BoatShapeModel, boardSize: number): BoatPositi
       for (let j = 0; j < segment.colsCount; j++) {
         boatPositions = assocPath(
           [`${startingRow! + rowsOffsetFromStart!}`, `${startingColumn! + colsOffsetFromStart!}`],
-          false,
+          PositionStateEnum.BOAT,
           boatPositions
         );
         colsOffsetFromStart!++;
@@ -45,11 +46,11 @@ const generateBoatShape = (shape: BoatShapeModel, boardSize: number): BoatPositi
   return boatPositions;
 };
 
-const arePositionsColliding = (boatPositions: BoatPositionModel, toCompare: BoatPositionModel): boolean =>
+const arePositionsColliding = (boatPositions: BoardPositionsModel, toCompare: BoardPositionsModel): boolean =>
   keys(boatPositions).some(
     (row): boolean =>
       has(row.toString(), toCompare) &&
-      keys(boatPositions[row]).some((column) => has(column.toString())(toCompare[row]))
+      keys(boatPositions[row]).some((column) => has(column.toString())(path([row.toString()])(toCompare)))
   );
 
 const checkCollisions = (boats: BoatModel[], currentBoat: BoatModel): boolean =>
@@ -116,3 +117,18 @@ export const createBoatsForAllPlayers = (
   boardSize: number,
   shapes: MappedBoatShapesModel
 ): Array<Array<BoatModel>> => generateBoatLocation(boardSize, createAllDefaultBoats(players, maxBoatPerPlayer), shapes);
+
+export const getHitBoat = (
+  playerIndex: number,
+  row: number,
+  col: number,
+  boats: Array<Array<BoatModel>>
+): BoatModel | undefined => {
+  let result: BoatModel | undefined;
+  boats.forEach((playerBoats, index) => {
+    if (index !== playerIndex) {
+      result = playerBoats.find((playerBoat) => !!path([row, col])(playerBoat.positions));
+    }
+  });
+  return result;
+};
