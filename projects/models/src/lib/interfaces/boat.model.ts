@@ -1,4 +1,4 @@
-import { BoatPositionModel } from './boat-position.model';
+import { BoardPositionsModel } from './board-positions.model';
 import { BoatTypeEnum } from '../enums';
 
 export interface BoatModel {
@@ -6,5 +6,5 @@ export interface BoatModel {
   boatIndex: number;
   shapeKey: BoatTypeEnum;
   hits: number;
-  positions: BoatPositionModel;
+  positions: BoardPositionsModel;
 }
