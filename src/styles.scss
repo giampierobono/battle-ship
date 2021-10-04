@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  background-color: black;
+  font-family: 'Orbitron', serif;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main-title {
+  color: white;
+  text-align: center;
+  font-size: 48px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+}

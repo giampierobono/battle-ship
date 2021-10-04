@@ -1,0 +1,39 @@
+<h1 class="main-title">Battleship tech challenge</h1>
+<h2 class="player-turn">
+  <ng-container *ngIf="isGameOver$ | async; else turn">
+    <div>Player {{ currentPlayerTurn$ | async }} wins!!</div>
+    <div>Total fire shots in the game: {{ totalFiredShots$ | async }}</div>
+    <ng-container *ngFor="let sunkBoats of sunkBoatsPerPlayer$ | async; let playerIndex = index">
+      <div>Player {{ playerIndex }} sunk boats: {{ sunkBoats }}</div>
+    </ng-container>
+  </ng-container>
+  <ng-template #turn>Player {{ currentPlayerTurn$ | async }}'s turn</ng-template>
+</h2>
+
+<div class="page-container">
+  <bs-boards-container></bs-boards-container>
+
+  <div class="buttons-container">
+    <div class="button">
+      <bs-button
+        [isEnabled]="!!(turnIsOver$ | async) && !!!(isGameOver$ | async)"
+        (buttonClick)="onNextTurn()"
+        [text]="'Next turn'"
+      ></bs-button>
+    </div>
+    <div class="button">
+      <bs-button (buttonClick)="restartGame()" [text]="'Restart game'"></bs-button>
+    </div>
+  </div>
+
+  <div class="player-statistics">
+    Boats you have sunk so far:
+    <ng-container *ngFor="let sunkBoat of currentPlayerSunkBoats$ | async">
+      <div class="player-statistics-container">
+        <div>Boat index: {{ sunkBoat.boat.boatIndex }}</div>
+        <div>Boat shape key: {{ sunkBoat.boat.shapeKey }}</div>
+        <div>Belongs to player index: {{ sunkBoat.player.playerIndex }}</div>
+      </div>
+    </ng-container>
+  </div>
+</div>

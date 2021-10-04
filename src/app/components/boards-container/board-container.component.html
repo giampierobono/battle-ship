@@ -1,0 +1,23 @@
+<div class="board-container">
+  <div class="board">
+    Sea
+    <bs-board
+      [boardMode]="BoardMode.Game"
+      [positions]="(currentPlayerMoves$ | async)!"
+      [boardSize]="(boardSize$ | async) || 0"
+      [playerIndex]="(currentPlayerIndex$ | async) || 0"
+      [isTurnOver]="(isTurnOver$ | async) || false"
+      (cellClick)="onPlayerShot($event)"
+    ></bs-board>
+  </div>
+
+  <div class="board">
+    Your board
+    <bs-board
+      [boardMode]="BoardMode.VisualizePlayerBoats"
+      [positions]="(currentPlayerBoatsPositions$ | async)!"
+      [boardSize]="(boardSize$ | async) || 0"
+      [playerIndex]="(currentPlayerIndex$ | async) || 0"
+    ></bs-board>
+  </div>
+</div>

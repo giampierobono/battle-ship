@@ -1,0 +1,14 @@
+.bs-button {
+  align-content: center;
+  border: 1px solid #9cfe46;
+  color: #9cfe46;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+
+  &.disabled {
+    border: dimgrey;
+    color: dimgrey;
+    cursor: not-allowed;
+  }
+}

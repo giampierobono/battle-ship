@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Battleship game actions addSunkBoat should return correct action structure 1`] = `
+Object {
+  "boatBelongsToPlayerIndex": 1,
+  "boatIndex": 0,
+  "sunkByPlayerIndex": 0,
+  "type": "[Battleship game] New sunk boat",
+}
+`;
+
+exports[`Battleship game actions nextTurn should return correct action structure 1`] = `
+Object {
+  "type": "[Battleship game] Move the next player",
+}
+`;
+
+exports[`Battleship game actions savePlayerMove should return correct action structure 1`] = `
+Object {
+  "shotPosition": Object {
+    "column": 0,
+    "playerIndex": 1,
+    "row": 0,
+  },
+  "state": "HIT",
+  "type": "[Battleship game] Save player move",
+}
+`;
+
+exports[`Battleship game actions setBoardPositionStatus should return correct action structure 1`] = `
+Object {
+  "column": 0,
+  "playerIndex": 0,
+  "row": 0,
+  "type": "[Battleship game] Set board position status",
+}
+`;
+
+exports[`Battleship game actions setPlayerTurn should return correct action structure 1`] = `
+Object {
+  "playerIndex": 1,
+  "type": "[Battleship game] Set player turn",
+}
+`;
+
+exports[`Battleship game actions setWinnerPlayer should return correct action structure 1`] = `
+Object {
+  "type": "[Battleship game] Set winning player",
+  "winnerPlayerIndex": 1,
+}
+`;
+
+exports[`Battleship game actions tryShoot should return correct action structure 1`] = `
+Object {
+  "column": 0,
+  "playerIndex": 0,
+  "row": 0,
+  "type": "[Battleship game] Player fires a shot",
+}
+`;

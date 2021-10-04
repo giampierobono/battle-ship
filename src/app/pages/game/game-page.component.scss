@@ -1,0 +1,34 @@
+.main-title {
+  color: white;
+  text-align: center;
+  font-size: 48px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.player-turn {
+  color: white;
+  text-align: center;
+}
+
+.player-statistics {
+  color: white;
+  font-size: 30px;
+
+  &-container {
+    border: 1px solid white;
+    margin: 5px;
+    padding: 5px;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+
+  .button {
+    margin-left: 10px;
+  }
+}

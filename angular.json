@@ -3,102 +3,123 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "store": {
-      "projectType": "library",
-      "root": "projects/store",
-      "sourceRoot": "projects/store/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/store/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/store/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/store/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
+    "battle-ship-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/store/src/test.ts",
-            "tsConfig": "projects/store/tsconfig.spec.json",
-            "karmaConfig": "projects/store/karma.conf.js"
-          }
+        "@schematics/angular:application": {
+          "strict": true
         }
-      }
-    },
-    "models": {
-      "projectType": "library",
-      "root": "projects/models",
-      "sourceRoot": "projects/models/src",
-      "prefix": "lib",
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "project": "projects/models/ng-package.json"
+            "outputPath": "dist/battle-ship-app",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/models/tsconfig.lib.prod.json"
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
             },
             "development": {
-              "tsConfig": "projects/models/tsconfig.lib.json"
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "battle-ship-app:build:production"
+            },
+            "development": {
+              "browserTarget": "battle-ship-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "main": "projects/models/src/test.ts",
-            "tsConfig": "projects/models/tsconfig.spec.json",
-            "karmaConfig": "projects/models/karma.conf.js"
+            "browserTarget": "battle-ship-app:build"
           }
-        }
-      }
-    },
-    "store-tools": {
-      "projectType": "library",
-      "root": "projects/store-tools",
-      "sourceRoot": "projects/store-tools/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/store-tools/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/store-tools/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/store-tools/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "projects/store-tools/src/test.ts",
-            "tsConfig": "projects/store-tools/tsconfig.spec.json",
-            "karmaConfig": "projects/store-tools/karma.conf.js"
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": [
+              "scss"
+            ],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "@smart/models",
+  "defaultProject": "battle-ship-app",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

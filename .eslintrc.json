@@ -1,5 +1,6 @@
 {
   "root": true,
+  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -10,11 +11,15 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
+        // AirBnB Styleguide rules
         "airbnb-typescript/base",
-        "prettier"
+        // Settings for Prettier
+        "eslint-config-prettier",
+        "plugin:prettier/recommended"
       ],
-      "plugins": ["prettier", "import"],
       "rules": {
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -30,18 +35,13 @@
             "prefix": "bs",
             "style": "kebab-case"
           }
-        ],
-        "import/prefer-default-export": "off",
-        "prettier/prettier": "error"
+        ]
       }
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended", "prettier"],
-      "plugins": ["prettier"],
-      "rules": {
-        "prettier/prettier": "error"
-      }
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
     }
   ]
 }

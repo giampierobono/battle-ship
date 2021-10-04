@@ -2,20 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "paths": {
-      "models": [
-        "dist/models/models",
-        "dist/models"
-      ],
-      "store": [
-        "dist/store/store",
-        "dist/store"
-      ],
-      "store-tools": [
-        "dist/store-tools/store-tools",
-        "dist/store-tools"
-      ]
-    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -30,10 +16,8 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"],
+    "types": ["jest"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

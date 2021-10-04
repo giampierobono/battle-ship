@@ -1,0 +1,30 @@
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  background: black;
+  box-sizing: border-box;
+  border: 1px solid #9cfe46;
+  color: white;
+
+  &.hit {
+    background-color: aqua;
+  }
+}
+
+.board-container {
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.board {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+}

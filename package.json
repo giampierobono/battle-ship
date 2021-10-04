@@ -1,26 +1,16 @@
 {
-  "name": "battle-ship",
+  "name": "battle-ship-app",
   "version": "0.0.0",
-  "private": true,
-  "workspaces": [
-    "./projects/*"
-  ],
   "scripts": {
-    "build:models:dev": "ng build models --configuration development",
-    "build:models:prod": "ng build models --configuration production",
-    "build:store-tools:dev": "ng build store-tools --configuration development",
-    "build:store-tools:prod": "ng build store-tools --configuration production",
-    "build:store:dev": "ng build store --configuration development",
-    "build:store:prod": "ng build store --configuration production",
-    "clean:all": "npm run clean:projects && npm run clean:root",
-    "clean:projects": "lerna clean --yes",
-    "clean:root": "rimraf node_module",
-    "cz": "git-cz",
-    "preinstall": "node ./scripts/check-yarn.js",
-    "postinstall": "lerna bootstrap",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
     "lint": "ng lint",
-    "sort-package-json": "sort-package-json && lerna exec sort-package-json"
+    "lint:fix": "ng lint --fix"
   },
+  "private": true,
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -50,6 +40,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/jest": "^12.1.2",
     "@angular-devkit/build-angular": "~12.2.7",
     "@angular-eslint/builder": "12.5.0",
     "@angular-eslint/eslint-plugin": "12.5.0",
@@ -62,6 +53,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "@ngrx/schematics": "^12.4.0",
     "@types/jasmine": "~3.8.0",
+    "@types/jest": "^27.0.2",
     "@types/node": "^12.11.1",
     "@types/ramda": "^0.27.45",
     "@typescript-eslint/eslint-plugin": "4.28.2",
@@ -78,13 +70,10 @@
     "husky": "^7.0.0",
     "immer": "^9.0.6",
     "jasmine-core": "~3.8.0",
-    "karma": "~6.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "~1.7.0",
+    "jest": "^27.2.4",
     "lerna": "^4.0.0",
     "ng-packagr": "^12.1.1",
+    "ngrx-store-localstorage": "^12.0.1",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "sort-package-json": "^1.52.0",

@@ -1,0 +1,18 @@
+<ng-container *ngFor="let row of numSequence(boardSize); let i = index">
+  <div class="row">
+    <ng-container *ngFor="let column of numSequence(boardSize); let j = index">
+      <div
+        class="cell"
+        [class.boat]="
+          boardMode !== BoardMode.Game && positions && positions[i] && positions[i][j] === PositionStateEnum.BOAT
+        "
+        [class.miss]="positions && positions[i] && positions[i][j] === PositionStateEnum.MISS"
+        (click)="onCellClick(i, j)"
+      >
+        <ng-container *ngIf="positions && positions[i] && positions[i][j] === PositionStateEnum.HIT">
+          <img src="./assets/explode.png" alt="HIT" />
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
