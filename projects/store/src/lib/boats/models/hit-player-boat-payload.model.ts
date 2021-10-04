@@ -1,5 +1,6 @@
-import { FireBoatPositionModel } from '../../common';
+import { ShotPositionModel } from 'models';
 
 export interface HitPlayerBoatPayloadModel {
-  position: FireBoatPositionModel;
+  boatIndex: number;
+  position: ShotPositionModel;
 }
