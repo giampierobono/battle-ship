@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { BoardMode } from '../board/board.component';
-import { BoardPositionsModel, ShotPositionModel } from '../../../models';
+import { BoardMode, BoardPositionsModel, ShotPositionModel } from '../../../models';
 import {
   getAllBoatsPositionsForCurrentPlayer,
   getIsCurrentTurnOver,

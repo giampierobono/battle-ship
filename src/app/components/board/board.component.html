@@ -1,6 +1,6 @@
-<ng-container *ngFor="let row of numSequence(boardSize); let i = index">
+<ng-container *ngFor="let row of boardSizeArray; let i = index">
   <div class="row">
-    <ng-container *ngFor="let column of numSequence(boardSize); let j = index">
+    <ng-container *ngFor="let column of boardSizeArray; let j = index">
       <div
         class="cell"
         [class.boat]="

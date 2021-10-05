@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "preinstall": "node scripts/check-npm.js",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
     "lint": "ng lint",
@@ -26,8 +27,7 @@
       "eslint . --fix"
     ],
     "src/**/*.scss": [
-      "stylelint --syntax scss --fix",
-      "git add"
+      "stylelint --syntax scss --fix"
     ]
   },
   "config": {
