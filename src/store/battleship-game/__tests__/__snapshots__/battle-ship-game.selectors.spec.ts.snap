@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Battleship game selectors getAllBoatsPositionsForCurrentPlayer should return all boats positions for current player 1`] = `
+Object {
+  "0": Object {
+    "2": "BOAT",
+    "3": "BOAT",
+    "4": "BOAT",
+    "5": "BOAT",
+  },
+  "2": Object {
+    "0": "BOAT",
+    "1": "BOAT",
+    "2": "BOAT",
+    "3": "BOAT",
+  },
+  "3": Object {
+    "6": "HIT",
+  },
+  "4": Object {
+    "6": "BOAT",
+  },
+  "5": Object {
+    "6": "BOAT",
+    "7": "BOAT",
+  },
+  "6": Object {
+    "2": "BOAT",
+    "3": "BOAT",
+    "4": "BOAT",
+    "5": "BOAT",
+  },
+}
+`;
+
+exports[`Battleship game selectors getBattleShipGameState should return game state 1`] = `
+Object {
+  "isCurrentTurnOver": true,
+  "isGameOver": false,
+  "playerTurn": 1,
+  "playersMoves": Object {
+    "0": Object {
+      "1": Object {
+        "7": "MISS",
+      },
+      "2": Object {
+        "5": "MISS",
+      },
+      "3": Object {
+        "3": "MISS",
+        "6": "HIT",
+      },
+      "5": Object {
+        "5": "MISS",
+      },
+    },
+    "1": Object {
+      "0": Object {
+        "6": "HIT",
+      },
+      "2": Object {
+        "7": "HIT",
+      },
+      "3": Object {
+        "5": "HIT",
+      },
+      "5": Object {
+        "4": "MISS",
+        "6": "MISS",
+      },
+    },
+  },
+  "playersSunkBoats": Object {},
+}
+`;
+
+exports[`Battleship game selectors getBoatForCurrentPlayer should return current player boats 1`] = `
+Array [
+  Object {
+    "boatIndex": 0,
+    "hits": 0,
+    "playerIndex": 1,
+    "positions": Object {
+      "6": Object {
+        "2": "BOAT",
+        "3": "BOAT",
+        "4": "BOAT",
+        "5": "BOAT",
+      },
+    },
+    "shapeKey": 2,
+  },
+  Object {
+    "boatIndex": 1,
+    "hits": 0,
+    "playerIndex": 1,
+    "positions": Object {
+      "2": Object {
+        "0": "BOAT",
+        "1": "BOAT",
+        "2": "BOAT",
+        "3": "BOAT",
+      },
+    },
+    "shapeKey": 2,
+  },
+  Object {
+    "boatIndex": 2,
+    "hits": 0,
+    "playerIndex": 1,
+    "positions": Object {
+      "0": Object {
+        "2": "BOAT",
+        "3": "BOAT",
+        "4": "BOAT",
+        "5": "BOAT",
+      },
+    },
+    "shapeKey": 2,
+  },
+  Object {
+    "boatIndex": 3,
+    "hits": 1,
+    "playerIndex": 1,
+    "positions": Object {
+      "3": Object {
+        "6": "HIT",
+      },
+      "4": Object {
+        "6": "BOAT",
+      },
+      "5": Object {
+        "6": "BOAT",
+        "7": "BOAT",
+      },
+    },
+    "shapeKey": 0,
+  },
+]
+`;
+
+exports[`Battleship game selectors getCurrentPlayerSunkBoats should return current player sunk boats property from state 1`] = `Array []`;
+
+exports[`Battleship game selectors getPlayerMoves should return current player moves property from state 1`] = `
+Object {
+  "0": Object {
+    "6": "HIT",
+  },
+  "2": Object {
+    "7": "HIT",
+  },
+  "3": Object {
+    "5": "HIT",
+  },
+  "5": Object {
+    "4": "MISS",
+    "6": "MISS",
+  },
+}
+`;
+
+exports[`Battleship game selectors getPlayersSunkBoats should return sunm boats per player 1`] = `Object {}`;
+
+exports[`Battleship game selectors getSunkBoatPerPlayer should return current player sunk boats from state 1`] = `
+Array [
+  0,
+  0,
+]
+`;
+
+exports[`Battleship game selectors getSunkBoatPerPlayer should return sunk boats per player 1`] = `
+Array [
+  0,
+  0,
+]
+`;

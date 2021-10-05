@@ -5,4 +5,6 @@ export const getBoatsState = createSelector(getCoreStateFeatureSelector, ({ boat
 
 export const getAllBoats = createSelector(getBoatsState, ({ boats }) => boats);
 
-export const getTotalNumberOfBoats = createSelector(getAllBoats, (boats) => boats.length);
+export const getTotalNumberOfBoats = createSelector(getAllBoats, (boats) =>
+  boats.reduce((acc, current) => acc + current.length, 0)
+);

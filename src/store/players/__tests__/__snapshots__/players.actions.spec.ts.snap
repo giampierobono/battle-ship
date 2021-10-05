@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Players action addPlayers should return correct action structure 1`] = `
+Object {
+  "players": Array [],
+  "type": "[Players] Add new players",
+}
+`;

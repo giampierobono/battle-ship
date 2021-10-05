@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Boat shapes actions addBoatShapes should return correct action structure 1`] = `
+Object {
+  "shapes": Array [
+    Object {
+      "segments": Array [
+        Object {
+          "colsCount": 4,
+          "rowsCount": 1,
+        },
+      ],
+      "shapeIndex": 0,
+      "shapeSize": 4,
+      "shapeType": 2,
+    },
+    Object {
+      "segments": Array [
+        Object {
+          "colsCount": 2,
+          "rowsCount": 2,
+        },
+      ],
+      "shapeIndex": 0,
+      "shapeSize": 4,
+      "shapeType": 1,
+    },
+    Object {
+      "segments": Array [
+        Object {
+          "colsCount": 1,
+          "rowsCount": 2,
+        },
+        Object {
+          "colsCount": 2,
+          "rowsCount": 1,
+        },
+      ],
+      "shapeIndex": 0,
+      "shapeSize": 4,
+      "shapeType": 0,
+    },
+  ],
+  "type": "[Boats] Add boat shape",
+}
+`;

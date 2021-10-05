@@ -6,6 +6,46 @@ export const mockGameSettings = {
   numOfPlayers: 2,
 };
 
+export const mockBoatShapesArray = [
+  {
+    shapeType: 2,
+    shapeIndex: 0,
+    segments: [
+      {
+        rowsCount: 1,
+        colsCount: 4,
+      },
+    ],
+    shapeSize: 4,
+  },
+  {
+    shapeType: 1,
+    shapeIndex: 0,
+    segments: [
+      {
+        rowsCount: 2,
+        colsCount: 2,
+      },
+    ],
+    shapeSize: 4,
+  },
+  {
+    shapeType: 0,
+    shapeIndex: 0,
+    segments: [
+      {
+        rowsCount: 2,
+        colsCount: 1,
+      },
+      {
+        rowsCount: 1,
+        colsCount: 2,
+      },
+    ],
+    shapeSize: 4,
+  },
+];
+
 export const mockBoatShapes = {
   '0': {
     shapeType: 0,

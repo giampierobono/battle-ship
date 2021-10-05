@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game settings actions setGameSettings should return correct action structure 1`] = `
+Object {
+  "boardSize": 8,
+  "boatsPerPlayer": 4,
+  "numOfPlayers": 4,
+  "shapes": Array [
+    Object {
+      "segments": Array [
+        Object {
+          "colsCount": 4,
+          "rowsCount": 1,
+        },
+      ],
+      "shapeIndex": 0,
+      "shapeSize": 4,
+      "shapeType": 2,
+    },
+    Object {
+      "segments": Array [
+        Object {
+          "colsCount": 2,
+          "rowsCount": 2,
+        },
+      ],
+      "shapeIndex": 0,
+      "shapeSize": 4,
+      "shapeType": 1,
+    },
+    Object {
+      "segments": Array [
+        Object {
+          "colsCount": 1,
+          "rowsCount": 2,
+        },
+        Object {
+          "colsCount": 2,
+          "rowsCount": 1,
+        },
+      ],
+      "shapeIndex": 0,
+      "shapeSize": 4,
+      "shapeType": 0,
+    },
+  ],
+  "type": "[Game settings] Set settings for current game",
+}
+`;
